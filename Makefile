@@ -53,3 +53,6 @@ build: pre-build
 build-linux: pre-build
 	@echo "Building Linux binary..."
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GO_BUILD_COMMAND) -o $(BUILD_DIR)/$(GO_NAME)-linux
+
+docker-build:
+	docker build --force-rm -t $(GO_NAME) .

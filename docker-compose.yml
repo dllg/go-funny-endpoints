@@ -1,0 +1,8 @@
+version: '3'
+services:
+  go-funny-endpoints:
+    image: go-funny-endpoints
+    ports:
+      - "18080:18080"
+    environment:
+      PORT: 18080
