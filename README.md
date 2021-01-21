@@ -1,3 +1,5 @@
+![test results](https://github.com/dllg/go-funny-endpoints/workflows/Test/badge.svg)
+
 # Funny endpoints
 
 Simple go-application that interacts with different open api's to create text that you can receive on GET endpoints. See [swagger.yml](swagger.yml).
