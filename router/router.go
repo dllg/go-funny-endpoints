@@ -1,40 +1,34 @@
 package router
 
 import (
-	"github.com/dllg/go-funny-endpoints/funny"
-	"github.com/dllg/go-funny-endpoints/httpclient"
-	"github.com/gin-gonic/gin"
+    "encoding/json"
+    "net/http"
+
+    "github.com/dllg/go-funny-endpoints/funny"
+    "github.com/dllg/go-funny-endpoints/httpclient"
 )
 
-type msgfunc func(hc httpclient.HTTPClient) string
+type msgfunc func(httpclient.HTTPClient) string
 
-func ginMessage(c *gin.Context, f msgfunc) {
-	c.JSON(200, gin.H{
-		"message": f(&hc),
-	})
+func messageHandler(f msgfunc) http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        msg := f(&hc)
+        w.Header().Set("Content-Type", "application/json")
+        w.WriteHeader(http.StatusOK)
+        json.NewEncoder(w).Encode(map[string]string{"message": msg})
+    }
 }
 
 var (
-	hc httpclient.Impl
+    hc httpclient.Impl
 )
 
 // Setup will setup all endpoints handling different http requests
-func Setup() *gin.Engine {
-	r := gin.Default()
-	v1 := r.Group("/v1")
-	{
-		v1.GET("/advice", func(c *gin.Context) {
-			ginMessage(c, funny.GetAdviceFromAPI)
-		})
-		v1.GET("/chucknorris", func(c *gin.Context) {
-			ginMessage(c, funny.GetChuckNorrisJokeFromAPI)
-		})
-		v1.GET("/dadjoke", func(c *gin.Context) {
-			ginMessage(c, funny.GetDadJokeFromAPI)
-		})
-		v1.GET("/random", func(c *gin.Context) {
-			ginMessage(c, funny.GetRandomMessage)
-		})
-	}
-	return r
+func Setup() *http.ServeMux {
+    mux := http.NewServeMux()
+    mux.HandleFunc("/v1/advice", messageHandler(funny.GetAdviceFromAPI))
+    mux.HandleFunc("/v1/chucknorris", messageHandler(funny.GetChuckNorrisJokeFromAPI))
+    mux.HandleFunc("/v1/dadjoke", messageHandler(funny.GetDadJokeFromAPI))
+    mux.HandleFunc("/v1/random", messageHandler(funny.GetRandomMessage))
+    return mux
 }
