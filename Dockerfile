@@ -29,7 +29,7 @@ COPY --from=builder /opt/${EXECUTABLE_NAME}/${EXECUTABLE_NAME}-linux /opt/
 
 WORKDIR /opt/
 
-ENV PORT "18080"
+ENV PORT="18080"
 
 EXPOSE 18080
 
