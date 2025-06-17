@@ -14,7 +14,7 @@ func main() {
 	port := config.Get(config.ServerPort) // Get the server port from config
 	addr := ":" + port
 
-	mux := router.Setup()
+	mux := router.Setup(config.Get(config.URL)) // Setup the router with the base URL from config
 
 	// attach an ErrorLog so you’ll see Listen/Serve errors
 	srv := &http.Server{

@@ -9,7 +9,7 @@ import (
 )
 
 func TestEndpoints(t *testing.T) {
-	r := Setup()
+	r := Setup("http://localhost:18080")
 	ts := httptest.NewServer(r)
 	defer ts.Close()
 
