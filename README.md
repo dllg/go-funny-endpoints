@@ -4,7 +4,7 @@
 
 Simple go-application that interacts with different open api's to create text that you can receive on GET endpoints. See [swagger.yml](swagger.yml).
 
-It uses [gin web framework](https://github.com/gin-gonic/gin) to handle http requests. For logging it uses [logrus](https://github.com/sirupsen/logrus).
+It uses [net/http framework](https://pkg.go.dev/net/http) to handle http requests. For logging it uses [logrus](https://github.com/sirupsen/logrus).
 
 ## Testing
 Testing of [funny.go](./funny/funny.go) is done using dependency injection. Mocking of [httpclient](./httpclient/httpclient.go) is done using [mockgen](https://github.com/golang/mock).

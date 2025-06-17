@@ -1,7 +1,7 @@
 package httpclient
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"time"
 )
@@ -30,10 +30,8 @@ func (h *Impl) SendGetRequest(uri string, headers map[string]string) ([]byte, er
 	if err != nil {
 		return nil, err
 	}
-	if headers != nil {
-		for k, value := range headers {
-			req.Header.Set(k, value)
-		}
+	for k, value := range headers {
+		req.Header.Set(k, value)
 	}
 	client := getClient()
 	r, err := client.Do(req)
@@ -41,7 +39,7 @@ func (h *Impl) SendGetRequest(uri string, headers map[string]string) ([]byte, er
 		return nil, err
 	}
 	defer r.Body.Close()
-	body, err := ioutil.ReadAll(r.Body)
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		return nil, err
 	}
