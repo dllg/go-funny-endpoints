@@ -19,23 +19,24 @@ clean:
 	@rm -Rf $(BUILD_DIR)
 
 deps:
-	go get -u golang.org/x/lint/golint
+	go install golang.org/x/lint/golint@latest
+	go install github.com/golang/mock/mockgen@latest
 
 format:
 	@echo "Automatically formating all your Go source code..."
 	go fmt ./...
 
 
-genmocks:
+genmocks: deps
 	@echo "Generating mocks"
 	$(shell mockgen -source=httpclient/httpclient.go -destination=httpclient/mockhttpclient.go -package=httpclient)
 
 # Lint the go code. Note: golint doesn't support vendor folder exclusion so we use find to filter it out
-lint:
+lint: deps
 	@echo "Using vet to check for common mistakes..."
 	@go vet ./...
 	@echo "Checking style with golint..."
-	@find . -type d -not -path "./vendor*" -exec golint {} \;
+	@golint ./...
 
 test:
 	@echo "Running all unit tests..."

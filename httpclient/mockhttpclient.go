@@ -5,42 +5,45 @@
 package httpclient
 
 import (
-	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
+
+	gomock "github.com/golang/mock/gomock"
 )
 
-// MockHTTPClient is a mock of HTTPClient interface
+// MockHTTPClient is a mock of HTTPClient interface.
 type MockHTTPClient struct {
 	ctrl     *gomock.Controller
 	recorder *MockHTTPClientMockRecorder
 }
 
-// MockHTTPClientMockRecorder is the mock recorder for MockHTTPClient
+// MockHTTPClientMockRecorder is the mock recorder for MockHTTPClient.
 type MockHTTPClientMockRecorder struct {
 	mock *MockHTTPClient
 }
 
-// NewMockHTTPClient creates a new mock instance
+// NewMockHTTPClient creates a new mock instance.
 func NewMockHTTPClient(ctrl *gomock.Controller) *MockHTTPClient {
 	mock := &MockHTTPClient{ctrl: ctrl}
 	mock.recorder = &MockHTTPClientMockRecorder{mock}
 	return mock
 }
 
-// EXPECT returns an object that allows the caller to indicate expected use
+// EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockHTTPClient) EXPECT() *MockHTTPClientMockRecorder {
 	return m.recorder
 }
 
-// SendGetRequest mocks base method
+// SendGetRequest mocks base method.
 func (m *MockHTTPClient) SendGetRequest(uri string, headers map[string]string) ([]byte, error) {
+	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "SendGetRequest", uri, headers)
 	ret0, _ := ret[0].([]byte)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// SendGetRequest indicates an expected call of SendGetRequest
+// SendGetRequest indicates an expected call of SendGetRequest.
 func (mr *MockHTTPClientMockRecorder) SendGetRequest(uri, headers interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendGetRequest", reflect.TypeOf((*MockHTTPClient)(nil).SendGetRequest), uri, headers)
 }

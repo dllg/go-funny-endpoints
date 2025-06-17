@@ -4,5 +4,11 @@ services:
     image: go-funny-endpoints
     ports:
       - "18080:18080"
+    expose:
+      - "18080"
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       PORT: 18080
+      GODEBUG: "http2debug=1"
