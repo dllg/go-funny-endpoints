@@ -1,0 +1,68 @@
+info:
+  contact: {}
+paths:
+  /v1/advice:
+    get:
+      consumes:
+      - application/json
+      description: Returns a random piece of advice from the Advice Slip API.
+      operationId: getAdvice
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      summary: Get a piece of advice
+      tags:
+      - advice
+  /v1/chucknorris:
+    get:
+      consumes:
+      - application/json
+      description: Returns a random Chuck Norris joke.
+      operationId: getChuckNorris
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      summary: Get a Chuck Norris joke
+      tags:
+      - chucknorris
+  /v1/dadjoke:
+    get:
+      consumes:
+      - application/json
+      description: Returns a random dad joke.
+      operationId: getDadJoke
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      summary: Get a Dad joke
+      tags:
+      - dadjoke
+  /v1/random:
+    get:
+      consumes:
+      - application/json
+      description: Returns a random message (advice, Chuck Norris or dad joke).
+      operationId: getRandomMessage
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      summary: Get a random message
+      tags:
+      - random
+swagger: "2.0"

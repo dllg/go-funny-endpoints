@@ -79,3 +79,32 @@ func TestServerPortEnvOverride(t *testing.T) {
 		t.Errorf("env override %q = %d; want %d", ServerPort, got, want)
 	}
 }
+
+func TestURLDefault(t *testing.T) {
+	// reset Viper and re‐apply defaults
+	viper.Reset()
+	Init()
+
+	got := Get(URL)
+	wantDefault := "http://localhost:18080" // ← change this to your actual default
+
+	if got != wantDefault {
+		t.Errorf("default %q = %q; want %q", URL, got, wantDefault)
+	}
+}
+
+func TestURLEnvOverride(t *testing.T) {
+	// set the env var that Viper will bind to "url"
+	os.Setenv("URL", "http://example.com")
+	defer os.Unsetenv("URL")
+
+	viper.Reset()
+	Init()
+
+	got := Get(URL)
+	want := "http://example.com"
+
+	if got != want {
+		t.Errorf("env override %q = %q; want %q", URL, got, want)
+	}
+}
