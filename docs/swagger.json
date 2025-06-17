@@ -1,0 +1,104 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/v1/advice": {
+            "get": {
+                "description": "Returns a random piece of advice from the Advice Slip API.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "advice"
+                ],
+                "summary": "Get a piece of advice",
+                "operationId": "getAdvice",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/v1/chucknorris": {
+            "get": {
+                "description": "Returns a random Chuck Norris joke.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "chucknorris"
+                ],
+                "summary": "Get a Chuck Norris joke",
+                "operationId": "getChuckNorris",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/v1/dadjoke": {
+            "get": {
+                "description": "Returns a random dad joke.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "dadjoke"
+                ],
+                "summary": "Get a Dad joke",
+                "operationId": "getDadJoke",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/v1/random": {
+            "get": {
+                "description": "Returns a random message (advice, Chuck Norris or dad joke).",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "random"
+                ],
+                "summary": "Get a random message",
+                "operationId": "getRandomMessage",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    }
+}
