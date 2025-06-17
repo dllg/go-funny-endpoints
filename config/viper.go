@@ -16,12 +16,14 @@ const (
 	VersionBuildRelease  = "version.build.release"
 	VersionGitHash       = "version.git.hash"
 	ServerPort           = "server.port"
+	URL                  = "url"
 )
 
 // Defaults provides sane default configurations when possible
 var Defaults = js{
-	ProjectID: "funny-endpoints",
+	ProjectID:  "funny-endpoints",
 	ServerPort: 18080,
+	URL:        "http://localhost:18080",
 }
 
 // Init will configure viper configs
